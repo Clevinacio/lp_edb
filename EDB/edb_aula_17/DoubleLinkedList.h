@@ -112,19 +112,7 @@ Item DoubleLinkedList<Item>::pop_front(){
 
 template<typename Item>
 Item DoubleLinkedList<Item>::remove(size_t position){
-    if (empty()){
-        return;
-    }
-
-    Node<Item>* current = head_;
-    size_t sizeNode = size();
-    for (size_t i = 0;i<sizeNode && current!=nullptr && i!=position; i++){
-        if (current==nullptr){
-            return nullptr;
-        }
-        
-
-    }
+    
 }
 
 template<typename Item>
