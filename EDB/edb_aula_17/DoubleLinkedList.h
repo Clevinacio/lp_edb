@@ -20,14 +20,16 @@ private:
     Node<Item>* last_;
 
 public:
+    DoubleLinkedList();
+
     void push_back(Item item);
     void push_front(Item item);
     void insert(Item item, size_t posititon);
     bool empty();
 
-    Item pop_back();
-    Item pop_front();
-    Item remove(size_t posititon);
+    void pop_back();
+    void pop_front();
+    void remove(size_t posititon);
 
     Item& front();
     Item& back();
@@ -43,6 +45,9 @@ public:
 
 template<typename Item>
 Node<Item>::Node(){}
+
+template<typename Item>
+DoubleLinkedList<Item>::DoubleLinkedList(){}
 
 template<typename Item>
 void DoubleLinkedList<Item>::push_back(Item item){
@@ -81,7 +86,32 @@ void DoubleLinkedList<Item>::push_front(Item item){
 
 template<typename Item>
 void DoubleLinkedList<Item>::insert(Item item, size_t position){
+    Node<Item> *current       = head_;
+    Node<Item> *previous      = nullptr;
+    Node<Item> *new_node      = new Node<Item>();
+               new_node->info = item;
+    size_t     length         = size();
 
+    if (position==0){
+        push_front(item);
+        return;
+    }
+    
+    if (position == length)
+    {
+        push_back(item);
+        return;
+    }
+
+    while (current!=nullptr)
+    {
+        
+            previous->next = new_node;
+            new_node->prev = previous;
+            new_node->next = current;
+            current->prev = new_node;
+            
+    }
 }
 
 template<typename Item>
@@ -90,29 +120,41 @@ bool DoubleLinkedList<Item>::empty(){
 }
 
 template<typename Item>
-Item DoubleLinkedList<Item>::pop_back(){
-
+void DoubleLinkedList<Item>::pop_back(){
     Node<Item> *tmp = last_;
     last_ = last_->prev;
     last_->next = nullptr;
     delete tmp;
 
-    return last_->info;
 }
 
 template<typename Item>
-Item DoubleLinkedList<Item>::pop_front(){
+void DoubleLinkedList<Item>::pop_front(){
     Node<Item> *tmp = head_;
     head_ = head_->next;
     head_->prev = nullptr;
     delete tmp;
 
-    return head_->info;
 }
 
 template<typename Item>
-Item DoubleLinkedList<Item>::remove(size_t position){
-    
+void DoubleLinkedList<Item>::remove(size_t position){
+    Node<Item> *current       = head_;
+    Node<Item> *previous      = nullptr;
+    size_t     length         = size();
+    for (size_t i = 0; i < length; ++i){
+        if (i==position){
+            Node<Item> *tmp = nullptr;
+            tmp = current->next;
+            tmp->prev = previous;
+            previous->next = tmp;
+            delete current;
+
+            return;
+        }
+        previous = current;
+        current = current->next;
+    }
 }
 
 template<typename Item>
@@ -156,15 +198,44 @@ Node<Item>* DoubleLinkedList<Item>::search(Item i){
 
 template<typename Item>
 void DoubleLinkedList<Item>::invert(){
-
+    Node<Item> *current = head_;
+    Node<Item> *tmp = nullptr;
+    while (current!=nullptr)
+    {
+        tmp           = current->next;
+        current->next = current->prev;
+        current->prev = tmp;
+        current       = current->prev;
+    }
+    
+    tmp = last_;
+    last_ = head_;
+    head_ = tmp;
 }
 
 template<typename Item>
 void DoubleLinkedList<Item>::traverse(void(*callback)(Item&)){
+    Node<Item> *current = head_;
+    Node<Item> *previous = nullptr;
 
+    while (current!=nullptr)
+    {
+        callback(current->info);
+        previous = current;
+        current  = current->next;
+    }
+    
 }
 
 template<typename Item>
 void DoubleLinkedList<Item>::traverseReverse(void (*callback)(Item&)){
+    Node<Item> *current = last_;
+    Node<Item> *previous = nullptr;
 
+    while (current!=nullptr)
+    {
+        callback(current->info);
+        previous = current;
+        current  = current->prev;
+    }
 }
