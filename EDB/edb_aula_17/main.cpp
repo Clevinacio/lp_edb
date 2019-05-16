@@ -29,15 +29,19 @@ int main(){
     std:: cout << l1->size() << '\n';
     std:: cout << l1->search(20) << '\n' << '\n';
 
-    l1->pop_back();
-    l1->pop_front();
-
     std:: cout << l1->front() << '\n';
     std::cout << l1->back() << '\n' << '\n';
 
     l1->invert();
 
     std:: cout << l1->front() << '\n';
-    std::cout << l1->back() << '\n' << '\n';
+    std::cout << l1->back() << '\n';
+
+    l1->pop_back();
+    l1->pop_front();
+
+    std:: cout << l1->front() << '\n';
+    std::cout << l1->back() << '\n';
+
     return 0;
 }

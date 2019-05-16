@@ -216,12 +216,10 @@ void DoubleLinkedList<Item>::invert(){
 template<typename Item>
 void DoubleLinkedList<Item>::traverse(void(*callback)(Item&)){
     Node<Item> *current = head_;
-    Node<Item> *previous = nullptr;
 
     while (current!=nullptr)
     {
         callback(current->info);
-        previous = current;
         current  = current->next;
     }
     
@@ -230,12 +228,10 @@ void DoubleLinkedList<Item>::traverse(void(*callback)(Item&)){
 template<typename Item>
 void DoubleLinkedList<Item>::traverseReverse(void (*callback)(Item&)){
     Node<Item> *current = last_;
-    Node<Item> *previous = nullptr;
 
     while (current!=nullptr)
     {
         callback(current->info);
-        previous = current;
         current  = current->prev;
     }
 }
