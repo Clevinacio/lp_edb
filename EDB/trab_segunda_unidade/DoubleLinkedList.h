@@ -24,12 +24,11 @@ public:
 
     void push_back(Item item);
     void push_front(Item item);
-    void insert(Item item, size_t posititon);
     bool empty();
 
     void pop_back();
     void pop_front();
-    void remove(size_t posititon);
+    void clear();
 
     Item& front();
     Item& back();
@@ -85,36 +84,6 @@ void DoubleLinkedList<Item>::push_front(Item item){
 }
 
 template<typename Item>
-void DoubleLinkedList<Item>::insert(Item item, size_t position){
-    Node<Item> *current       = head_;
-    Node<Item> *previous      = nullptr;
-    Node<Item> *new_node      = new Node<Item>();
-               new_node->info = item;
-    size_t     length         = size();
-
-    if (position==0){
-        push_front(item);
-        return;
-    }
-    
-    if (position == length)
-    {
-        push_back(item);
-        return;
-    }
-
-    while (current!=nullptr)
-    {
-        
-            previous->next = new_node;
-            new_node->prev = previous;
-            new_node->next = current;
-            current->prev = new_node;
-            
-    }
-}
-
-template<typename Item>
 bool DoubleLinkedList<Item>::empty(){
     return head_ == nullptr && last_ == nullptr;
 }
@@ -138,23 +107,21 @@ void DoubleLinkedList<Item>::pop_front(){
 }
 
 template<typename Item>
-void DoubleLinkedList<Item>::remove(size_t position){
-    Node<Item> *current       = head_;
-    Node<Item> *previous      = nullptr;
-    size_t     length         = size();
-    for (size_t i = 0; i < length; ++i){
-        if (i==position){
-            Node<Item> *tmp = nullptr;
-            tmp = current->next;
-            tmp->prev = previous;
-            previous->next = tmp;
-            delete current;
-
-            return;
-        }
-        previous = current;
-        current = current->next;
+void DoubleLinkedList<Item>::clear(){
+    if (empty())
+    {
+        return;
     }
+
+    while (head_->next!=nullptr)
+    {
+        pop_front();
+    }
+
+    delete head_;
+    head_ = nullptr;
+    last_ = nullptr;
+    
 }
 
 template<typename Item>
