@@ -14,8 +14,8 @@ class Deque{
         void pop_back();
         void pop_front();
         void clear();
-        Element& front();
-        Element& back();
+        Element* front();
+        Element* back();
         std:: size_t size();
         bool empty();
 
@@ -23,8 +23,6 @@ class Deque{
         DoubleLinkedList<Element> elements;
 
 };
-
-#endif // !DEQUE_H
 
 template<typename Element>
 Deque<Element>:: Deque(): elements(){}
@@ -41,30 +39,49 @@ void Deque<Element>::push_back(Element element){
 
 template<typename Element>
 void Deque<Element>::pop_back(){
-
+    if (empty())
+    {
+        return;
+    }
     elements.pop_back();
 }
 
 template<typename Element>
 void Deque<Element>::pop_front(){
-
+    if (empty())
+    {
+        return;
+    }
     elements.pop_front();
 }
 
 template<typename Element>
 void Deque<Element>::clear(){
-
+    if (empty())
+    {
+        return;
+    }
     elements.clear();
 }
 
 template<typename Element>
-Element& Deque<Element>::front(){
-    return elements.front();
+Element* Deque<Element>::front(){
+    if (empty())
+    {
+        return nullptr;
+    }
+    
+
+    return &elements.front();
 }
 
 template<typename Element>
-Element& Deque<Element>::back(){
-    return elements.back();
+Element* Deque<Element>::back(){
+    if (empty())
+    {
+        return nullptr;
+    }
+    return &elements.back();
 }
 
 template<typename Element>
@@ -76,3 +93,4 @@ template<typename Element>
 bool Deque<Element>::empty(){
     return elements.empty();
 }
+#endif // !DEQUE_H

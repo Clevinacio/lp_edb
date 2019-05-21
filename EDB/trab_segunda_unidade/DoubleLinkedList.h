@@ -39,8 +39,6 @@ public:
     void traverseReverse(void (*callback)(Item&));
 
 }; 
-#endif // !DOUBLE_LINKED_LIST_H
-
 
 template<typename Item>
 Node<Item>::Node(){}
@@ -198,3 +196,4 @@ void DoubleLinkedList<Item>::traverseReverse(void (*callback)(Item&)){
         current  = current->prev;
     }
 }
+#endif  // !DOUBLE_LINKED_LIST_H

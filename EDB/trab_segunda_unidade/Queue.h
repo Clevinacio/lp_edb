@@ -15,17 +15,19 @@ public:
     bool empty();
     void push_back(T element);
     void pop_front();
-    T peek();
+    T* peek();
     int size();
 };
-#endif // DEBUG
 
 template<typename T>
 Queue<T>::Queue(): data(){}
 
 template<typename T>
 void Queue<T>::clear(){
-
+    if (empty())
+    {
+        return;
+    }
     data.clear();
 
 }
@@ -42,15 +44,24 @@ void Queue<T>::push_back(T element){
 
 template<typename T>
 void Queue<T>::pop_front(){
+    if (empty())
+    {
+        return;
+    }
     data.pop_back();
 }
 
 template<typename T>
-T Queue<T>::peek(){
-    return data.back();
+T* Queue<T>::peek(){
+    if (empty())
+    {
+        return nullptr;
+    }
+    return &data.back();
 }
 
 template<typename T>
 int Queue<T>::size(){
     return data.size();
 }
+#endif  // DEBUG

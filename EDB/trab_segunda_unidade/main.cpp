@@ -2,9 +2,11 @@
 #include <string>
 
 #include "Deque.h"
+#include "Stack.h"
+#include "Queue.h"
 
 int main(){
-    Deque<int> *new_deque = new Deque<int>();
+    Deque<std::string> *new_deque = new Deque<std::string>();
     
     std:: cout << new_deque->empty() << std:: endl << std:: endl;
     
@@ -35,7 +37,8 @@ int main(){
 
     std::cout << new_deque->empty() << std:: endl;
     std:: cout << new_deque->size() << std:: endl;
-
+    std:: cout << new_deque->front() << std:: endl << '\n';
+    
     //Queue<int> *new_queue = new Queue<int>();
     /*
     std:: cout << new_queue->empty() << std:: endl << std:: endl;
