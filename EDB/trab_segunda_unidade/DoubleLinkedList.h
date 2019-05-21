@@ -30,8 +30,8 @@ public:
     void pop_front();
     void clear();
 
-    Item& front();
-    Item& back();
+    Item* front();
+    Item* back();
     size_t size();
     Node<Item>* search(Item i);
     void invert();
@@ -88,6 +88,9 @@ bool DoubleLinkedList<Item>::empty(){
 
 template<typename Item>
 void DoubleLinkedList<Item>::pop_back(){
+    if (head_==nullptr&&last_==nullptr){
+        return;
+    }
     Node<Item> *tmp = last_;
     last_ = last_->prev;
     last_->next = nullptr;
@@ -97,6 +100,9 @@ void DoubleLinkedList<Item>::pop_back(){
 
 template<typename Item>
 void DoubleLinkedList<Item>::pop_front(){
+    if (head_==nullptr&&last_==nullptr){
+        return;
+    }
     Node<Item> *tmp = head_;
     head_ = head_->next;
     head_->prev = nullptr;
@@ -106,7 +112,9 @@ void DoubleLinkedList<Item>::pop_front(){
 
 template<typename Item>
 void DoubleLinkedList<Item>::clear(){
-
+    if (head_==nullptr&&last_==nullptr){
+        return;
+    }
     while (head_->next!=nullptr)
     {
         pop_front();
@@ -119,13 +127,19 @@ void DoubleLinkedList<Item>::clear(){
 }
 
 template<typename Item>
-Item& DoubleLinkedList<Item>::front(){
-     return head_->info;
+Item* DoubleLinkedList<Item>::front(){
+     if (head_==nullptr&&last_==nullptr){
+        return nullptr;
+        }
+     return &head_->info;
 }
 
 template<typename Item>
-Item& DoubleLinkedList<Item>::back(){
-    return last_->info;
+Item* DoubleLinkedList<Item>::back(){
+    if (head_==nullptr&&last_==nullptr){
+        return nullptr;
+    }
+    return &last_->info;
 }
 
 template<typename Item>
