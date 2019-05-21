@@ -1,27 +1,65 @@
 #include <iostream>
 #include <string>
 
-#include "Stack.h"
+#include "Deque.h"
 
 int main(){
-    Stack<int> *new_stack = new Stack<int>();
+    Deque<int> *new_deque = new Deque<int>();
+    
+    std:: cout << new_deque->empty() << std:: endl << std:: endl;
+    
+    new_deque->push_front(1);
+    new_deque->push_back(2);
+    new_deque->push_back(3);
+
+    std::cout << new_deque->empty() << '\n';
+    std:: cout << new_deque->size() << std:: endl;
+    std:: cout << new_deque->front() << std:: endl;
+    std:: cout << new_deque->back() << std:: endl << '\n';
+
+    new_deque->pop_front();
+
+    std:: cout << new_deque->size() << std:: endl;
+    std:: cout << new_deque->back() << std:: endl;
+    std:: cout << new_deque->front() << std:: endl << '\n';
+    
+    new_deque->push_front(1);
+    
+    new_deque->pop_back();
+
+    std:: cout << new_deque->size() << std:: endl;
+    std:: cout << new_deque->back() << std:: endl;
+    std:: cout << new_deque->front() << std:: endl << '\n';
+
+    new_deque->clear();
+
+    std::cout << new_deque->empty() << std:: endl;
+    std:: cout << new_deque->size() << std:: endl;
+
+    //Queue<int> *new_queue = new Queue<int>();
     /*
-    DoubleLinkedList<int> *new_list = new DoubleLinkedList<int>();
+    std:: cout << new_queue->empty() << std:: endl << std:: endl;
     
-    std::cout << new_list->empty() << std::endl;
-    
-    new_list->push_front(1);
-    new_list->push_back(2);
-    new_list->push_back(3);
+    new_queue->push_back(1);
+    new_queue->push_back(2);
+    new_queue->push_back(3);
 
-    std::cout << new_list->empty() << '\n' << std::endl;
-    
-    new_list->clear();
+    std::cout << new_queue->empty() << '\n';
+    std:: cout << new_queue->size() << std:: endl;
+    std:: cout << new_queue->peek() << std:: endl << '\n';
 
-    std::cout << new_list->empty() << std::endl;
-    */
+    new_queue->pop_front();
+
+    std:: cout << new_queue->size() << std:: endl;
+    std:: cout << new_queue->peek() << std:: endl << '\n';
     
-    std::cout << new_stack->empty() << std::endl << '\n';
+    new_queue->clear();
+
+    std::cout << new_queue->empty() << std:: endl;
+    std:: cout << new_queue->size() << std:: endl;
+    
+    Stack<int> *new_stack = new Stack<int>();
+    std:: cout << new_stack->empty() << std:: endl << '\n';
 
     new_stack->push(12);
     new_stack->push(10);
@@ -40,7 +78,7 @@ int main(){
 
     std:: cout << new_stack->empty() << std:: endl;
     std:: cout << new_stack->size() << std:: endl;
-    
+    */
     return 0;
 }
 

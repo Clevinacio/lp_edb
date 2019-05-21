@@ -11,8 +11,8 @@ class Deque{
         Deque();
         void push_front(Element element);
         void push_back(Element element);
-        void popBack();
-        void popFront();
+        void pop_back();
+        void pop_front();
         void clear();
         Element& front();
         Element& back();
@@ -40,28 +40,19 @@ void Deque<Element>::push_back(Element element){
 }
 
 template<typename Element>
-void Deque<Element>::popBack(){
-    if (empty()){
-        return;
-    }
+void Deque<Element>::pop_back(){
 
     elements.pop_back();
 }
 
 template<typename Element>
-void Deque<Element>::popFront(){
-    if (empty()){
-        return;
-    }
+void Deque<Element>::pop_front(){
 
-    elements.pop_front(0);
+    elements.pop_front();
 }
 
 template<typename Element>
 void Deque<Element>::clear(){
-    if (empty()){
-        return;
-    }
 
     elements.clear();
 }
@@ -83,5 +74,5 @@ std::size_t Deque<Element>::size(){
 
 template<typename Element>
 bool Deque<Element>::empty(){
-    return elements.empty()==0;
+    return elements.empty();
 }

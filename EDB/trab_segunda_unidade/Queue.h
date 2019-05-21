@@ -25,9 +25,6 @@ Queue<T>::Queue(): data(){}
 
 template<typename T>
 void Queue<T>::clear(){
-    if(data.empty()){
-        return;
-    }
 
     data.clear();
 
@@ -35,7 +32,7 @@ void Queue<T>::clear(){
 
 template<typename T>
 bool Queue<T>::empty(){
-    return data.empty()==0;
+    return data.empty();
 }
 
 template<typename T>

@@ -108,10 +108,6 @@ void DoubleLinkedList<Item>::pop_front(){
 
 template<typename Item>
 void DoubleLinkedList<Item>::clear(){
-    if (empty())
-    {
-        return;
-    }
 
     while (head_->next!=nullptr)
     {
