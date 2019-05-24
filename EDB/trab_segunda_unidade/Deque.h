@@ -72,7 +72,7 @@ Element* Deque<Element>::front(){
     }
     
 
-    return &elements.front();
+    return elements.front();
 }
 
 template<typename Element>
@@ -81,7 +81,7 @@ Element* Deque<Element>::back(){
     {
         return nullptr;
     }
-    return &elements.back();
+    return elements.back();
 }
 
 template<typename Element>

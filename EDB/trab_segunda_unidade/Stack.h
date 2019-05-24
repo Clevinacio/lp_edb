@@ -50,7 +50,7 @@ T* Stack<T>::pop(){
         return nullptr;
     }
     data.pop_front();
-    return &data.front();
+    return data.front();
 }
 
 template<typename T>
@@ -60,7 +60,7 @@ T* Stack<T>::top(){
         return nullptr;
     }
     
-    return &data.front();
+    return data.front();
 }
 
 template<typename T>

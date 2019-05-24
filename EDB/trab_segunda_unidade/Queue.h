@@ -57,7 +57,7 @@ T* Queue<T>::peek(){
     {
         return nullptr;
     }
-    return &data.back();
+    return data.back();
 }
 
 template<typename T>
